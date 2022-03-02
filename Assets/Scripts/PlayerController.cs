@@ -14,13 +14,24 @@ public class PlayerController : MonoBehaviour
     private Vector3 lastMousePos;
     private Vector3 mousePos;
     private Vector3 newPosForTrans;
+    private Animator animator;
 
-     float xPosMin = -1.81f, xPosMax = 1.75f;
+    [SerializeField]
+    private float swerveSpeed = 0.5f;
+    [SerializeField]
+    private float maxSwerveAmount = 1f;
+
+
+    private float _lastFrameFingerPositionX;
+    private float _moveFactorX;
+    public float MoveFactorX => _moveFactorX;
+    float xPosMin = -1.81f, xPosMax = 1.75f;
 
     // Start is called before the first frame update
     void Start()
     {
         localTrans = GetComponent<Transform>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,27 +39,47 @@ public class PlayerController : MonoBehaviour
     {
         if (isGameStarted)
         {
-            localTrans.position += localTrans.forward * Speed *Time.deltaTime;
-        }      
+            Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
+            transform.Translate(translate);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            animator.SetBool("IsWon", true);
+            animator.SetBool("IsMoving", false);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             isGameStarted = true;
+            animator.SetBool("IsMoving", true);
+            _lastFrameFingerPositionX = Input.mousePosition.x;
             //Play Animation Here
+
         }
         else if (Input.GetMouseButton(0))
         {
-            mousePos = Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, SwipeSpeed));
+            _moveFactorX = Input.mousePosition.x - _lastFrameFingerPositionX;
+            _lastFrameFingerPositionX = Input.mousePosition.x;
+            MovePlayer();
 
-            float xDiff = mousePos.x - lastMousePos.x;
-
-            newPosForTrans.x=localTrans.position.x + xDiff;
-            newPosForTrans.y = localTrans.position.y;
-            newPosForTrans.z = localTrans.position.z;
-            localTrans.position = newPosForTrans;
-            lastMousePos = mousePos;
-
-            float xPos = Mathf.Clamp(transform.position.x, xPosMin, xPosMax);
-            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
         }  
+        else if (Input.GetMouseButtonUp(0))
+        {
+            _moveFactorX = 0f;
+            Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
+            transform.Translate(translate);
+            //animator.SetBool("IsMoving", false);
+        }
+    }
+
+    public void MovePlayer()
+    {
+        float swerveAmount = Time.deltaTime * swerveSpeed * MoveFactorX;
+        swerveAmount = Mathf.Clamp(swerveAmount, -maxSwerveAmount, maxSwerveAmount);
+        transform.Translate(swerveAmount , 0, 0);
+        //Limit player movment in x axis
+        float xPos = Mathf.Clamp(transform.position.x, xPosMin, xPosMax);
+        transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+
     }
 }
