@@ -109,3 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de015d0a206e2c4dbfef3b52894bedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diamondPickupSound: {fileID: 8300000, guid: 08a68ac3dc26123449b0e59870700360, type: 3}

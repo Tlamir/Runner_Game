@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public Text gameText;
     public int level;
     private GameObject player;
+    public AudioClip gameOverSound;
+    public AudioClip winSound;
 
     private Health healthSytsem;
     // Start is called before the first frame update
@@ -46,11 +48,12 @@ public class LevelManager : MonoBehaviour
             {
                 gameText.text = "Game Over";
                 isLevelComplated = true;
+                AudioSource.PlayClipAtPoint(gameOverSound, transform.position);
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
                 gameText.text = "Level completed";
-
+                AudioSource.PlayClipAtPoint(winSound, transform.position);
                 level = level + 1;
                 PlayerPrefs.SetInt("level", level);
                 isLevelComplated = true;

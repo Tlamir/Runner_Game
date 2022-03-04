@@ -118,8 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("barrier"))
         {
-            healthSytsem.health = healthSytsem.health-1;
-            Destroy(other.gameObject);
+            healthSytsem.health--;
         }
         if (other.gameObject.CompareTag("Goal"))
         {

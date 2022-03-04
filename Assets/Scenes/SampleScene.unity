@@ -2335,11 +2335,6 @@ PrefabInstance:
       propertyPath: coinText
       value: 
       objectReference: {fileID: 353127586}
-    - target: {fileID: 8689753759609684557, guid: 8bf7bca973c4a6b47bef2f6c33991523,
-        type: 3}
-      propertyPath: gameText
-      value: 
-      objectReference: {fileID: 1259799249}
     - target: {fileID: 9156535457211044332, guid: 8bf7bca973c4a6b47bef2f6c33991523,
         type: 3}
       propertyPath: m_RootOrder

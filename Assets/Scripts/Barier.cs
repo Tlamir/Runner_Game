@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Diamons : MonoBehaviour
+public class Barier : MonoBehaviour
 {
+    public AudioClip HitSound;
     // Start is called before the first frame update
-    public AudioClip diamondPickupSound;
     void Start()
     {
         
@@ -14,17 +14,16 @@ public class Diamons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 30 * Time.deltaTime, 0);
+        
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            AudioSource.PlayClipAtPoint(diamondPickupSound, transform.position);
+            AudioSource.PlayClipAtPoint(HitSound, transform.position);
             Destroy(this.gameObject);
 
-           
+
         }
     }
 }
