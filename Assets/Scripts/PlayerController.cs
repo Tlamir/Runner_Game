@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     public Camera Camera;
     public float Speed = 10f;
     public float SwipeSpeed = 10f;
-    public int coins = 0;
+    public int diamonds = 0;
+    public int level = 1;
 
     public Text coinText;
     public Text gameText;
@@ -38,10 +39,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetInt("level"));
+        //Load Game
+        diamonds=PlayerPrefs.GetInt("diamonds");
+
         gameText.text = "Touch to start";
         localTrans = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         healthSytsem = this.GetComponent<Health>();
+        //LoadPlayer();
     }
 
     // Update is called once per frame
@@ -89,7 +95,7 @@ public class PlayerController : MonoBehaviour
             isGameStarted = false;
         }
 
-        coinText.text = "Diamonds: " + coins;
+        coinText.text = "Diamonds: " + diamonds;
         
     }
 
@@ -109,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("diamond"))
         {
-            coins++;
+            diamonds++;
         }
         if (other.gameObject.CompareTag("barrier"))
         {
@@ -124,8 +130,14 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsMoving", false);
             isGameStarted = false;
             gameObject.transform.Rotate(0, 180, 0);
-            Destroy(other);    
+            Destroy(other);
+            level++;
+            PlayerPrefs.SetInt("diamonds",diamonds);
+            PlayerPrefs.SetInt("level", level);
+
         }
 
     }
+
+  
 }
