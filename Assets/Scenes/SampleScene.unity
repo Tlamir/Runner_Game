@@ -1130,11 +1130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4214909890548575630, guid: 0105538ac1120984b8702df4914e185c,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7901780402517546487, guid: 0105538ac1120984b8702df4914e185c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1911,6 +1906,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: xbot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383834232952523606, guid: 8bf7bca973c4a6b47bef2f6c33991523,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8689753759609684552, guid: 8bf7bca973c4a6b47bef2f6c33991523,
         type: 3}

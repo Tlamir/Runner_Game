@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Camera Camera;
     public float Speed = 10f;
     public float SwipeSpeed = 10f;
+    public int coins = 0;
 
     private bool isGameStarted=false;
     private bool isGameFinished=false;
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("diamond"))
         {
-            Destroy(other.gameObject);
+            coins++;
         }
         if (other.gameObject.CompareTag("barrier"))
         {
