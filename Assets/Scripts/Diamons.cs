@@ -23,7 +23,5 @@ public class Diamons : MonoBehaviour
             Destroy(this.gameObject);
            
         }
-      
-
     }
 }
