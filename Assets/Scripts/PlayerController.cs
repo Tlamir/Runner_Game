@@ -82,4 +82,25 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("diamond"))
+        {
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("barrier"))
+        {
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            animator.SetBool("IsWon", true);
+            animator.SetBool("IsMoving", false);
+            isGameStarted = false;
+            gameObject.transform.Rotate(0, 180, 0);
+            Destroy(other);    
+        }
+
+    }
 }
