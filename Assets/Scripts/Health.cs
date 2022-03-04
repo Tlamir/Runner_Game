@@ -10,11 +10,6 @@ public class Health : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHearth;
     public Sprite emptyHearth;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

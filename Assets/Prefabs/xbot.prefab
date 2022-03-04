@@ -2227,11 +2227,12 @@ GameObject:
   - component: {fileID: 9156535457211044332}
   - component: {fileID: 3022654946037762966}
   - component: {fileID: 8689753759609684553}
-  - component: {fileID: 8689753759609684552}
   - component: {fileID: 8689753759609684557}
+  - component: {fileID: 919132148936216746}
+  - component: {fileID: 919132148936216745}
   m_Layer: 0
   m_Name: xbot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2245,7 +2246,7 @@ Transform:
   m_GameObject: {fileID: 8383834232952523606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.228, z: -5.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1871125433793776017}
   - {fileID: 8283390432808800595}
@@ -2283,25 +2284,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!136 &8689753759609684552
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383834232952523606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.20751858
-  m_Height: 1.8874972
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.88756335, z: -0.0055184364}
 --- !u!114 &8689753759609684557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,10 +2302,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
-  Speed: 4
+  Speed: 6
   SwipeSpeed: 200
+  coins: 0
+  coinText: {fileID: 0}
+  gameText: {fileID: 0}
   swerveSpeed: 0.7
   maxSwerveAmount: 1
+--- !u!136 &919132148936216746
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383834232952523606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.28677297
+  m_Height: 1.9997841
+  m_Direction: 1
+  m_Center: {x: -0.021481752, y: 0.8331582, z: 0.039665937}
+--- !u!114 &919132148936216745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383834232952523606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e26130376589044799783edd5a094e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  numberOfHearts: 3
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHearth: {fileID: 21300000, guid: bca865d1dddfea94489ddf24e3a61fc7, type: 3}
+  emptyHearth: {fileID: 21300000, guid: 7a05b19e282d9de40b77b8421bef2b08, type: 3}
 --- !u!1 &8572140065492311922
 GameObject:
   m_ObjectHideFlags: 0

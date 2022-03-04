@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float Speed = 10f;
     public float SwipeSpeed = 10f;
     public int coins = 0;
+
+    public Text coinText;
+    public Text gameText;
 
     private bool isGameStarted=false;
     private bool isGameFinished=false;
@@ -34,6 +38,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameText.text = "Touch to start";
         localTrans = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         healthSytsem = this.GetComponent<Health>();
@@ -44,8 +49,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isGameStarted)
         {
+            //Move stright after start
             Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
             transform.Translate(translate);
+            gameText.text = "";
         }
         if (!isGameFinished) //Lock Control After victory
         {
@@ -71,15 +78,18 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(translate);
                 //animator.SetBool("IsMoving", false);
             }
+
         }
 
         //Loose Condition
         if (healthSytsem.health==0)
         {
-            Debug.Log("Game Over");
+            gameText.text = "Game Over";
             isGameFinished = true;
             isGameStarted = false;
         }
+
+        coinText.text = "Diamonds: " + coins;
         
     }
 
@@ -108,7 +118,8 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Goal"))
         {
-            isGameFinished=true;
+            gameText.text = "Level completed";
+            isGameFinished =true;
             animator.SetBool("IsWon", true);
             animator.SetBool("IsMoving", false);
             isGameStarted = false;
