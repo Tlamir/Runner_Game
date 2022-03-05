@@ -126,12 +126,17 @@ public class PlayerController : MonoBehaviour
             collectedDiamonds++;
             PlayParticle(collectParticle);
         }
-        if (other.gameObject.CompareTag("barrier"))
+        else if (other.gameObject.CompareTag("diamond5"))
+        {
+            collectedDiamonds=collectedDiamonds+5;
+            PlayParticle(collectParticle);
+        }
+        else if (other.gameObject.CompareTag("barrier"))
         {
             healthSytsem.health--;
             PlayParticle(hitParticle);
         }
-        if (other.gameObject.CompareTag("Goal"))
+        else if (other.gameObject.CompareTag("Goal"))
         {
 
             //Win Condition
