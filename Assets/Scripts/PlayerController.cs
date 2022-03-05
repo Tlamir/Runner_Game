@@ -96,9 +96,14 @@ public class PlayerController : MonoBehaviour
             isGameStarted = false;
             isGameOver = true;
             collectedLostCoinText.text = "You lost " +  collectedDiamonds;
+            coinText.text = "Diamonds: " + diamonds ;
+        }
+        else
+        {
+            coinText.text = "Diamonds: " + (diamonds + collectedDiamonds);
         }
 
-        coinText.text = "Diamonds: " + (diamonds +collectedDiamonds);
+        
         
     }
 
