@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     public float SwipeSpeed = 10f;
     public int diamonds = 0;
     public int level=1;
+    public int collectedDiamonds = 0;
 
     public TMP_Text coinText;
-    
+    public TMP_Text collectedLostCoinText;
+
 
     public bool isGameStarted=false;
     public bool isGameFinished=false;
@@ -93,9 +95,10 @@ public class PlayerController : MonoBehaviour
             isGameFinished = true;
             isGameStarted = false;
             isGameOver = true;
+            collectedLostCoinText.text = "You lost " +  collectedDiamonds;
         }
 
-        coinText.text = "Diamonds: " + diamonds;
+        coinText.text = "Diamonds: " + (diamonds +collectedDiamonds);
         
     }
 
@@ -115,7 +118,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("diamond"))
         {
-            diamonds++;
+            collectedDiamonds++;
         }
         if (other.gameObject.CompareTag("barrier"))
         {
@@ -127,8 +130,9 @@ public class PlayerController : MonoBehaviour
             //Win Condition
             isGameFinished = true;
             isGameStarted = false;
-            PlayerPrefs.SetInt("diamond", diamonds);
-            
+            PlayerPrefs.SetInt("diamond", (diamonds+collectedDiamonds));
+            collectedLostCoinText.text = "You Collected " +  collectedDiamonds;
+
             animator.SetBool("IsWon", true);
             animator.SetBool("IsMoving", false);
             
