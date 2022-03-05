@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Diamons : MonoBehaviour
 {
-    // Start is called before the first frame update
     public AudioClip diamondPickupSound;
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,9 +16,7 @@ public class Diamons : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(diamondPickupSound, transform.position);
-            Destroy(this.gameObject);
-
-           
+            Destroy(this.gameObject);     
         }
     }
 }

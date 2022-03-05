@@ -60,7 +60,15 @@ public class LevelManager : MonoBehaviour
             }
             else // Win and go to next level
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+                if (SceneManager.GetActiveScene().buildIndex + 1>=4)
+                {
+                    SceneManager.LoadScene(1);
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                
             }
             
         }

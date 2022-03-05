@@ -8,8 +8,17 @@ public class Loading : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("level")+1);
-        Debug.Log(PlayerPrefs.GetInt("level") + 1);
+        if (PlayerPrefs.GetInt("level") + 1 >= 4){
+
+            PlayerPrefs.SetInt("level",0);
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("level")+1);
+        }
+        
+       
     }
 
 }
