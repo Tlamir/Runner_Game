@@ -31,13 +31,18 @@ public class PlayerController : MonoBehaviour
     private float maxSwerveAmount = 1f;
 
     public int diamonds = 0;
-    public int level=1;
+    public int level = 1;
     public int collectedDiamonds = 0;
 
-    public bool isGameStarted=false;
-    public bool isGameFinished=false;
-    public bool isGameOver=false;
-    
+    public bool isGameStarted = false;
+    public bool isGameFinished = false;
+    public bool isGameOver = false;
+
+    [SerializeField]
+    public ParticleSystem collectParticle =null;
+    [SerializeField]
+    public ParticleSystem hitParticle = null;
+
 
     // Start is called before the first frame update
     void Start()
@@ -119,10 +124,12 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("diamond"))
         {
             collectedDiamonds++;
+            PlayParticle(collectParticle);
         }
         if (other.gameObject.CompareTag("barrier"))
         {
             healthSytsem.health--;
+            PlayParticle(hitParticle);
         }
         if (other.gameObject.CompareTag("Goal"))
         {
@@ -138,8 +145,13 @@ public class PlayerController : MonoBehaviour
             
             gameObject.transform.Rotate(0, 180, 0);
             Destroy(other);
-           
+
         }
 
     }  
+
+    void PlayParticle(ParticleSystem particle)
+    {
+        particle.Play();
+    }
 }
