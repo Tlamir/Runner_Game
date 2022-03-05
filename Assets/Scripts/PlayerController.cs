@@ -7,50 +7,46 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public Camera Camera;
-    public float Speed = 10f;
-    public float SwipeSpeed = 10f;
-    public int diamonds = 0;
-    public int level=1;
-    public int collectedDiamonds = 0;
-
     public TMP_Text coinText;
     public TMP_Text collectedLostCoinText;
-
-
-    public bool isGameStarted=false;
-    public bool isGameFinished=false;
-    public bool isGameOver=false;
 
     private Transform localTrans;
     private Vector3 lastMousePos;
     private Vector3 mousePos;
     private Vector3 newPosForTrans;
     private Animator animator;
-
     private Health healthSytsem;
+
+    public float Speed = 10f;
+    public float SwipeSpeed = 10f;
+    public float MoveFactorX => _moveFactorX;
+    private float xPosMin = -1.81f;
+    private float xPosMax = 1.75f;
+    private float _moveFactorX;
+    private float _lastFrameFingerPositionX;
 
     [SerializeField]
     private float swerveSpeed = 0.5f;
     [SerializeField]
     private float maxSwerveAmount = 1f;
 
+    public int diamonds = 0;
+    public int level=1;
+    public int collectedDiamonds = 0;
 
-    private float _lastFrameFingerPositionX;
-    private float _moveFactorX;
-    public float MoveFactorX => _moveFactorX;
-    float xPosMin = -1.81f, xPosMax = 1.75f;
+    public bool isGameStarted=false;
+    public bool isGameFinished=false;
+    public bool isGameOver=false;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
         //Load Number of diamonds player has 
         diamonds = PlayerPrefs.GetInt("diamond");
-
         localTrans = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         healthSytsem = this.GetComponent<Health>();
-        //LoadPlayer();
     }
 
     // Update is called once per frame
@@ -61,7 +57,7 @@ public class PlayerController : MonoBehaviour
             //Move stright after start
             Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
             transform.Translate(translate);
-            
+          
         }
         if (!isGameFinished) //Lock Control After victory
         {
@@ -103,8 +99,6 @@ public class PlayerController : MonoBehaviour
             coinText.text = "Diamonds: " + (diamonds + collectedDiamonds);
         }
 
-        
-        
     }
 
     public void MovePlayer()
@@ -113,6 +107,7 @@ public class PlayerController : MonoBehaviour
             float swerveAmount = Time.deltaTime * swerveSpeed * MoveFactorX;
             swerveAmount = Mathf.Clamp(swerveAmount, -maxSwerveAmount, maxSwerveAmount);
             transform.Translate(swerveAmount, 0, 0);
+
             //Limit player movment in x axis
             float xPos = Mathf.Clamp(transform.position.x, xPosMin, xPosMax);
             transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
@@ -146,7 +141,5 @@ public class PlayerController : MonoBehaviour
            
         }
 
-    }
-
-  
+    }  
 }

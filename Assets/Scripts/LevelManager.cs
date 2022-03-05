@@ -5,32 +5,24 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 public class LevelManager : MonoBehaviour
-{
-    private bool isLevelComplated=false;
+{  
     public TMP_Text levelText;
     public TMP_Text menuText;
-    public int level;
-    private GameObject player;
     public AudioClip gameOverSound;
     public AudioClip winSound;
 
+    private GameObject player;
     private Health healthSytsem;
+
+    public int level;
+    private bool isLevelComplated = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Load Scene
-
         player=GameObject.FindGameObjectWithTag("Player");
         healthSytsem = player.GetComponent<Health>();
-
-        //Load Game
         level = PlayerPrefs.GetInt("level");
-     
-        /*if (PlayerPrefs.GetInt("level")==0)
-        {
-            level++;//For first time starting the game
-            PlayerPrefs.SetInt("level", level);
-        }*/
         levelText.text = "Level "+ (level+1);
         menuText.text = "Touch to start";
     }
@@ -66,7 +58,7 @@ public class LevelManager : MonoBehaviour
             {
                 Restart();
             }
-            else // WIn and go to next level
+            else // Win and go to next level
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
