@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Load Scene
 
         player=GameObject.FindGameObjectWithTag("Player");
         healthSytsem = player.GetComponent<Health>();
@@ -26,12 +26,12 @@ public class LevelManager : MonoBehaviour
         //Load Game
         level = PlayerPrefs.GetInt("level");
      
-        if (PlayerPrefs.GetInt("level")==0)
+        /*if (PlayerPrefs.GetInt("level")==0)
         {
             level++;//For first time starting the game
             PlayerPrefs.SetInt("level", level);
-        }
-        levelText.text = "Level "+ level;
+        }*/
+        levelText.text = "Level "+ (level+1);
         menuText.text = "Touch to start";
     }
 
@@ -47,15 +47,15 @@ public class LevelManager : MonoBehaviour
             }
             if (healthSytsem.health == 0) // Game Over
             {
-                menuText.text = "Game Over";
+                menuText.text = "Game Over Restart";
                 isLevelComplated = true;
                 AudioSource.PlayClipAtPoint(gameOverSound, transform.position);
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
-                menuText.text = "Level completed";
+                menuText.text = "Level completed  Go to next level";
                 AudioSource.PlayClipAtPoint(winSound, transform.position);
-                level = level + 1;
+                level++;
                 PlayerPrefs.SetInt("level", level);
                 isLevelComplated = true;
             }
@@ -68,7 +68,7 @@ public class LevelManager : MonoBehaviour
             }
             else // WIn and go to next level
             {
-
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
             }
             
         }
