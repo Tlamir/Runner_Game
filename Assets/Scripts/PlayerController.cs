@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public int diamonds = 0;
     public int level=1;
 
-    public Text coinText;
+    public TMP_Text coinText;
     
 
     public bool isGameStarted=false;

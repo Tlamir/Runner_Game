@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class LevelManager : MonoBehaviour
 {
     private bool isLevelComplated=false;
-    public Text levelText;
-    public Text gameText;
+    public TMP_Text levelText;
+    public TMP_Text menuText;
     public int level;
     private GameObject player;
     public AudioClip gameOverSound;
@@ -31,7 +32,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("level", level);
         }
         levelText.text = "Level "+ level;
-        gameText.text = "Touch to start";
+        menuText.text = "Touch to start";
     }
 
     // Update is called once per frame
@@ -41,18 +42,18 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0)) //Game Started
             {
-                gameText.text = "";
+                menuText.text = "";
 
             }
             if (healthSytsem.health == 0) // Game Over
             {
-                gameText.text = "Game Over";
+                menuText.text = "Game Over";
                 isLevelComplated = true;
                 AudioSource.PlayClipAtPoint(gameOverSound, transform.position);
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
-                gameText.text = "Level completed";
+                menuText.text = "Level completed";
                 AudioSource.PlayClipAtPoint(winSound, transform.position);
                 level = level + 1;
                 PlayerPrefs.SetInt("level", level);
