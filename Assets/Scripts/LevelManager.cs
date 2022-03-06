@@ -41,12 +41,12 @@ public class LevelManager : MonoBehaviour
             {
                 menuText.text = "Game Over Restart";
                 isLevelComplated = true;
-                AudioSource.PlayClipAtPoint(gameOverSound, transform.position);
+                AudioSource.PlayClipAtPoint(gameOverSound, player.transform.position);
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
                 menuText.text = "Level completed  Go to next level";
-                AudioSource.PlayClipAtPoint(winSound, transform.position);
+                AudioSource.PlayClipAtPoint(winSound, player.transform.position);
                 level++;
                 PlayerPrefs.SetInt("level", level);
                 isLevelComplated = true;
