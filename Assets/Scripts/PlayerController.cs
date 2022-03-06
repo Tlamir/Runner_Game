@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem collectParticle =null;
     [SerializeField]
     public ParticleSystem hitParticle = null;
+    [SerializeField]
+    public ParticleSystem diamond5Particle = null;
 
 
     // Start is called before the first frame update
@@ -118,8 +120,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("diamond5"))
         {
-            collectedDiamonds=collectedDiamonds+ (5 * powerUpMultipler);
-            PlayParticle(collectParticle);
+            collectedDiamonds=collectedDiamonds+ (other.GetComponent<Diamons>().value5Diamond * powerUpMultipler);
+
+            PlayParticle(diamond5Particle);
         }
         else if (other.gameObject.CompareTag("barrier"))
         {
