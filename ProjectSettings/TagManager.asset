@@ -8,6 +8,7 @@ TagManager:
   - barrier
   - Goal
   - diamond5
+  - 2xPowerUp
   layers:
   - Default
   - TransparentFX

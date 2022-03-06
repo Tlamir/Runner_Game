@@ -3419,6 +3419,11 @@ PrefabInstance:
       propertyPath: collectedLostCoinText
       value: 
       objectReference: {fileID: 906378164}
+    - target: {fileID: 8741880896113588799, guid: 8bf7bca973c4a6b47bef2f6c33991523,
+        type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9156535457211044332, guid: 8bf7bca973c4a6b47bef2f6c33991523,
         type: 3}
       propertyPath: m_RootOrder

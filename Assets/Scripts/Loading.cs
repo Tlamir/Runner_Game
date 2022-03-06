@@ -8,7 +8,7 @@ public class Loading : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("level") + 1 >= 4){
+        if (PlayerPrefs.GetInt("level") + 1 >= 5){
 
             PlayerPrefs.SetInt("level",0);
             SceneManager.LoadScene(1);

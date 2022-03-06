@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public int diamonds = 0;
     public int level = 1;
     public int collectedDiamonds = 0;
+    public int powerUpMultipler = 0;
 
     public bool isGameStarted = false;
     public bool isGameFinished = false;
@@ -123,13 +124,15 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("diamond"))
         {
-            collectedDiamonds++;
+            collectedDiamonds=collectedDiamonds+(1*powerUpMultipler);
             PlayParticle(collectParticle);
         }
         else if (other.gameObject.CompareTag("diamond5"))
         {
-            collectedDiamonds=collectedDiamonds+5;
-            collectParticle.startColor=(Color.yellow);
+            collectedDiamonds=collectedDiamonds+ (5 * powerUpMultipler);
+
+
+
             PlayParticle(collectParticle);
 
 
