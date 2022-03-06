@@ -129,7 +129,10 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("diamond5"))
         {
             collectedDiamonds=collectedDiamonds+5;
+            collectParticle.startColor=(Color.yellow);
             PlayParticle(collectParticle);
+
+
         }
         else if (other.gameObject.CompareTag("barrier"))
         {

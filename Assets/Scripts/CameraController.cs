@@ -35,7 +35,6 @@ public class CameraController : MonoBehaviour
         {
             cameraAnim.Play();
             isAnimationPlayed = true;
-            Debug.Log("Animation Should Play");
         }
     }
 
