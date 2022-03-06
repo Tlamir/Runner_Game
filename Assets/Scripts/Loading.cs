@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour
 {
-
     void Start()
     {
         if (PlayerPrefs.GetInt("level") + 1 >= 5){

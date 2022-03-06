@@ -5,6 +5,7 @@ using UnityEngine;
 public class Diamons : MonoBehaviour
 {
     public AudioClip diamondPickupSound;
+
     public int valueDiamond = 1;
     public int value5Diamond = 5;
     // Update is called once per frame
@@ -12,7 +13,6 @@ public class Diamons : MonoBehaviour
     {
         transform.Rotate(0, 30 * Time.deltaTime, 0);
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

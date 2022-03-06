@@ -5,14 +5,8 @@ using TMPro;
 
 public class PowerUp2x : MonoBehaviour
 {
-    public AudioClip diamondPickupSound;
     public TMP_Text text;
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+    public AudioClip diamondPickupSound;
 
     private void OnTriggerEnter(Collider other)
     {

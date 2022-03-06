@@ -22,6 +22,9 @@ public class LevelManager : MonoBehaviour
     int diamonds;
     int collectedLostDiamonds;
 
+    public string GameOverText = "Game Over Restart";
+    public string WinText = "Level Complated Go To Next Level";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,43 +54,29 @@ public class LevelManager : MonoBehaviour
             }
             if (healthSytsem.health == 0) // Game Over
             {
-                menuText.text = "Game Over Restart";
-                isLevelComplated = true;
-                AudioSource.PlayClipAtPoint(gameOverSound, player.transform.position);
+                EndGame(GameOverText, gameOverSound);
+
                 collectedLostCoinText.text = "You lost " + collectedLostDiamonds;
                 
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
-                menuText.text = "Level completed  Go to next level";
-                AudioSource.PlayClipAtPoint(winSound, player.transform.position);
                 level++;
-                PlayerPrefs.SetInt("level", level);
-                isLevelComplated = true;
-
-                PlayerPrefs.SetInt("diamond", (diamonds + collectedLostDiamonds));
+                EndGame(WinText, winSound); 
+                SaveProgress(level, (diamonds + collectedLostDiamonds));
                 collectedLostCoinText.text = "You Collected " + collectedLostDiamonds;
-
             }
             coinText.text = "Diamonds: " + (diamonds + collectedLostDiamonds);
         }
         else if (Input.GetMouseButtonDown(0))
         {
             if (player.GetComponent<PlayerController>().isGameOver) // loose restart the game
-            {
-                
+            {      
                 Restart();
             }
             else // Win and go to next level
             {
-                if (SceneManager.GetActiveScene().buildIndex + 1>=5)
-                {
-                    SceneManager.LoadScene(1);
-                }
-                else
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                }             
+                LoadNextLevel();
             }        
         }
 
@@ -96,5 +85,30 @@ public class LevelManager : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void EndGame(string endingText,AudioClip audio)
+    {
+        menuText.text = endingText;
+        isLevelComplated = true;
+        AudioSource.PlayClipAtPoint(audio, player.transform.position);
+    }
+
+    void LoadNextLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex + 1 >= 5)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    void SaveProgress(int levels , int diamondsTotal)
+    {
+        PlayerPrefs.SetInt("level", levels);
+        PlayerPrefs.SetInt("diamond", diamondsTotal);
     }
 }

@@ -10,10 +10,6 @@ public class PlayerController : MonoBehaviour
     public TMP_Text coinText;
     public TMP_Text collectedLostCoinText;
 
-    private Transform localTrans;
-    private Vector3 lastMousePos;
-    private Vector3 mousePos;
-    private Vector3 newPosForTrans;
     private Animator animator;
     private Health healthSytsem;
 
@@ -50,9 +46,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Load Number of diamonds player has 
-        //diamonds = PlayerPrefs.GetInt("diamond");
-        localTrans = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         healthSytsem = this.GetComponent<Health>();
         powerUpMultipler = 1;
@@ -114,15 +107,12 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("diamond"))
-        {
-            collectedDiamonds=collectedDiamonds+(other.GetComponent<Diamons>().valueDiamond*powerUpMultipler);
-            PlayParticle(collectParticle);
+        {          
+            CollectDiamond(other.GetComponent<Diamons>().valueDiamond, collectParticle);
         }
         else if (other.gameObject.CompareTag("diamond5"))
-        {
-            collectedDiamonds=collectedDiamonds+ (other.GetComponent<Diamons>().value5Diamond * powerUpMultipler);
-
-            PlayParticle(diamond5Particle);
+        {           
+            CollectDiamond(other.GetComponent<Diamons>().value5Diamond, diamond5Particle);
         }
         else if (other.gameObject.CompareTag("barrier"))
         {
@@ -145,5 +135,11 @@ public class PlayerController : MonoBehaviour
     void PlayParticle(ParticleSystem particle)
     {
         particle.Play();
+    }
+
+    void CollectDiamond(int diamondType,ParticleSystem particle)
+    {
+        collectedDiamonds = collectedDiamonds + (diamondType * powerUpMultipler);
+        PlayParticle(particle);
     }
 }
