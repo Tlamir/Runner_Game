@@ -2342,6 +2342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4781866900473018966, guid: 0357e48741260aa46990b2af4c6bda4c,
         type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 818000278}
+    - target: {fileID: 4781866900473018966, guid: 0357e48741260aa46990b2af4c6bda4c,
+        type: 3}
       propertyPath: gameText
       value: 
       objectReference: {fileID: 0}
@@ -2355,6 +2360,11 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 1956803550}
+    - target: {fileID: 4781866900473018966, guid: 0357e48741260aa46990b2af4c6bda4c,
+        type: 3}
+      propertyPath: collectedLostCoinText
+      value: 
+      objectReference: {fileID: 911191820}
     - target: {fileID: 4781866900473018967, guid: 0357e48741260aa46990b2af4c6bda4c,
         type: 3}
       propertyPath: m_Name

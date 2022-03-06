@@ -16,9 +16,6 @@ public class Loading : MonoBehaviour
         else
         {
             SceneManager.LoadScene(PlayerPrefs.GetInt("level")+1);
-        }
-        
-       
+        }   
     }
-
 }

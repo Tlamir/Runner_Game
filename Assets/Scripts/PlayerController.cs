@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public int diamonds = 0;
     public int level = 1;
     public int collectedDiamonds = 0;
-    public int powerUpMultipler = 0;
+    public int powerUpMultipler = 1;
 
     public bool isGameStarted = false;
     public bool isGameFinished = false;
@@ -49,10 +49,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //Load Number of diamonds player has 
-        diamonds = PlayerPrefs.GetInt("diamond");
+        //diamonds = PlayerPrefs.GetInt("diamond");
         localTrans = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         healthSytsem = this.GetComponent<Health>();
+        powerUpMultipler = 1;
     }
 
     // Update is called once per frame
@@ -62,8 +63,7 @@ public class PlayerController : MonoBehaviour
         {
             //Move stright after start
             Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
-            transform.Translate(translate);
-          
+            transform.Translate(translate);       
         }
         if (!isGameFinished) //Lock Control After victory
         {
@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
                 Vector3 translate = (new Vector3(0, 0, 1) * Time.deltaTime) * Speed;
                 transform.Translate(translate);
             }
-
         }
 
         //Loose Condition
@@ -97,45 +96,30 @@ public class PlayerController : MonoBehaviour
             isGameFinished = true;
             isGameStarted = false;
             isGameOver = true;
-            collectedLostCoinText.text = "You lost " +  collectedDiamonds;
-            coinText.text = "Diamonds: " + diamonds ;
         }
-        else
-        {
-            coinText.text = "Diamonds: " + (diamonds + collectedDiamonds);
-        }
-
     }
 
     public void MovePlayer()
-    {
-        
+    {     
             float swerveAmount = Time.deltaTime * swerveSpeed * MoveFactorX;
             swerveAmount = Mathf.Clamp(swerveAmount, -maxSwerveAmount, maxSwerveAmount);
             transform.Translate(swerveAmount, 0, 0);
-
             //Limit player movment in x axis
             float xPos = Mathf.Clamp(transform.position.x, xPosMin, xPosMax);
-            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
-        
+            transform.position = new Vector3(xPos, transform.position.y, transform.position.z);      
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("diamond"))
         {
-            collectedDiamonds=collectedDiamonds+(1*powerUpMultipler);
+            collectedDiamonds=collectedDiamonds+(other.GetComponent<Diamons>().valueDiamond*powerUpMultipler);
             PlayParticle(collectParticle);
         }
         else if (other.gameObject.CompareTag("diamond5"))
         {
             collectedDiamonds=collectedDiamonds+ (5 * powerUpMultipler);
-
-
-
             PlayParticle(collectParticle);
-
-
         }
         else if (other.gameObject.CompareTag("barrier"))
         {
@@ -148,17 +132,11 @@ public class PlayerController : MonoBehaviour
             //Win Condition
             isGameFinished = true;
             isGameStarted = false;
-            PlayerPrefs.SetInt("diamond", (diamonds+collectedDiamonds));
-            collectedLostCoinText.text = "You Collected " +  collectedDiamonds;
-
             animator.SetBool("IsWon", true);
-            animator.SetBool("IsMoving", false);
-            
+            animator.SetBool("IsMoving", false);          
             gameObject.transform.Rotate(0, 180, 0);
             Destroy(other);
-
         }
-
     }  
 
     void PlayParticle(ParticleSystem particle)

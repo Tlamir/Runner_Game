@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 0}
-  gameText: {fileID: 0}
-  level: 0
+  menuText: {fileID: 0}
+  collectedLostCoinText: {fileID: 0}
+  coinText: {fileID: 0}
   gameOverSound: {fileID: 8300000, guid: b23c07390e1dab04cb5f9820eb88104a, type: 3}
   winSound: {fileID: 8300000, guid: 3488287388e830c44bb110457277db40, type: 3}
+  level: 0

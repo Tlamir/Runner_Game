@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PowerUp2x : MonoBehaviour
 {
     public AudioClip diamondPickupSound;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TMP_Text text;
 
     // Update is called once per frame
     void Update()
@@ -23,6 +20,7 @@ public class PowerUp2x : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(diamondPickupSound, transform.position);
             other.gameObject.GetComponent<PlayerController>().powerUpMultipler = 2;
+            text.text = "2x Diamonds Lets Gooo ";
             Destroy(this.gameObject);
         }
     }
