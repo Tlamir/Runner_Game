@@ -19,9 +19,18 @@ public class PowerUp2x : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(diamondPickupSound, transform.position);
-            other.gameObject.GetComponent<PlayerController>().powerUpMultipler = 2;
-            text.text = "2x Diamonds Lets Gooo ";
-            Destroy(this.gameObject);
+            StartCoroutine(PowerUp(other.gameObject));
+            this.GetComponent<Renderer>().enabled = false;
         }
+    }
+
+    IEnumerator PowerUp(GameObject gameObject)
+    {
+        text.text = "2x Diamonds Lets Gooo ";
+        gameObject.gameObject.GetComponent<PlayerController>().powerUpMultipler = 2;
+        yield return new WaitForSeconds(3f);
+        gameObject.gameObject.GetComponent<PlayerController>().powerUpMultipler = 1;
+        text.text = "";
+
     }
 }
