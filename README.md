@@ -7,6 +7,7 @@
 <li>Progress will be saved after completing each run</li>
 <li>There is a powerup that muliplies number of each diamond pickup</li>
 <li>Project have Developper Options</li>
+<li>To enable developper options use DevelopperOptions gameobject</li>
 <li>With developper options developper can tweak health and diamond multipler</li>
 </ul>
 
