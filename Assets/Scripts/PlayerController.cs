@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text collectedLostCoinText;
 
     private Animator animator;
-    private Health healthSytsem;
+    public Health healthSytsem;
 
     public float Speed = 10f;
     public float SwipeSpeed = 10f;
