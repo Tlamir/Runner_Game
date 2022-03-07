@@ -55,9 +55,7 @@ public class LevelManager : MonoBehaviour
             if (healthSytsem.health == 0) // Game Over
             {
                 EndGame(GameOverText, gameOverSound);
-
-                collectedLostCoinText.text = "You lost " + collectedLostDiamonds;
-                
+                collectedLostCoinText.text = "You lost " + collectedLostDiamonds;     
             }
             if (player.GetComponent<PlayerController>().isGameFinished && !player.GetComponent<PlayerController>().isGameOver) //Level Complated
             {
